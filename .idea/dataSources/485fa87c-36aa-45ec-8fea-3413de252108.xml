@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="MySQL - liga@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
+    <schema id="1" name="liga">
+      <visible>1</visible>
+    </schema>
+    <schema id="2" name="agenda"/>
+    <schema id="3" name="agendacontactos"/>
+    <schema id="4" name="baskethiber"/>
+    <schema id="5" name="bbdd_escuela"/>
+    <schema id="6" name="cartelera"/>
+    <schema id="7" name="contactos"/>
+    <schema id="8" name="dudas"/>
+    <schema id="9" name="ejercicio"/>
+    <schema id="10" name="hiberag"/>
+    <schema id="11" name="information_schema"/>
+    <schema id="12" name="laravel"/>
+    <schema id="13" name="listaespera"/>
+    <schema id="14" name="maquina"/>
+    <schema id="15" name="mysql"/>
+    <schema id="16" name="performance_schema"/>
+    <schema id="17" name="phpmyadmin"/>
+    <schema id="18" name="pruebahibernate"/>
+    <schema id="19" name="test"/>
+    <table id="20" parent="1" name="equipos"/>
+    <table id="21" parent="1" name="jugadores"/>
+    <table id="22" parent="1" name="partidos"/>
+    <column id="23" parent="20" name="id_equipo">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="24" parent="20" name="nombre">
+      <mandatory>1</mandatory>
+      <data-type>varchar(45)|0</data-type>
+    </column>
+    <column id="25" parent="20" name="ciudad">
+      <mandatory>1</mandatory>
+      <data-type>varchar(45)|0</data-type>
+    </column>
+    <column id="26" parent="20" name="web">
+      <data-type>varchar(250)|0</data-type>
+      <default-expression>&apos;sin web oficial&apos;</default-expression>
+    </column>
+    <column id="27" parent="20" name="puntos">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <index id="28" parent="20" name="nombre_UNIQUE">
+      <columns>nombre</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <key id="29" parent="20" name="PRIMARY">
+      <columns>id_equipo</columns>
+      <primary>1</primary>
+    </key>
+    <key id="30" parent="20" name="nombre_UNIQUE">
+      <columns>nombre</columns>
+      <underlying-index>nombre_UNIQUE</underlying-index>
+    </key>
+    <column id="31" parent="21" name="id_jugador">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="32" parent="21" name="nombre">
+      <data-type>varchar(45)|0</data-type>
+    </column>
+    <column id="33" parent="21" name="apellido">
+      <data-type>varchar(45)|0</data-type>
+    </column>
+    <column id="34" parent="21" name="puesto">
+      <mandatory>1</mandatory>
+      <data-type>varchar(45)|0</data-type>
+    </column>
+    <column id="35" parent="21" name="id_capitan">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="36" parent="21" name="fecha_alta">
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="37" parent="21" name="salario">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="38" parent="21" name="equipo">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="39" parent="21" name="altura">
+      <data-type>decimal(4,2)|0</data-type>
+    </column>
+    <index id="40" parent="21" name="fequipo">
+      <columns>equipo</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="41" parent="21" name="PRIMARY">
+      <columns>id_jugador</columns>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="42" parent="21" name="fequipo">
+      <columns>equipo</columns>
+      <ref-key>~.equipos.PRIMARY</ref-key>
+      <cascade-update-rule>no_action</cascade-update-rule>
+      <cascade-delete-rule>no_action</cascade-delete-rule>
+    </foreign-key>
+    <column id="43" parent="22" name="id_partido">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="44" parent="22" name="elocal">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="45" parent="22" name="evisitante">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="46" parent="22" name="resultado">
+      <data-type>varchar(45)|0</data-type>
+    </column>
+    <column id="47" parent="22" name="fecha">
+      <data-type>date|0</data-type>
+    </column>
+    <column id="48" parent="22" name="arbitro">
+      <data-type>varchar(45)|0</data-type>
+    </column>
+    <index id="49" parent="22" name="flocal">
+      <columns>elocal</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="50" parent="22" name="fvisitante">
+      <columns>evisitante</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="51" parent="22" name="PRIMARY">
+      <columns>id_partido</columns>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="52" parent="22" name="flocal">
+      <columns>elocal</columns>
+      <ref-key>~.equipos.PRIMARY</ref-key>
+      <cascade-update-rule>update</cascade-update-rule>
+      <cascade-delete-rule>delete</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="53" parent="22" name="fvisitante">
+      <columns>evisitante</columns>
+      <ref-key>~.equipos.PRIMARY</ref-key>
+      <cascade-update-rule>update</cascade-update-rule>
+      <cascade-delete-rule>delete</cascade-delete-rule>
+    </foreign-key>
+  </database-model>
+</dataSource>
